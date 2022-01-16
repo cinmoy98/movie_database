@@ -1,10 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, request,jsonify, json
+from flask import Flask, render_template, redirect, url_for, request ,jsonify, json
 from flask_pymongo import PyMongo
+from bson.json_util import dumps, loads
 
 app = Flask(__name__)
 
 app.config["MONGO_URI"]= "mongodb+srv://cinmoy98:ci406898-@movies.4hmlw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 app.config['SECRET_KEY'] = "Donotexpose"
+auth_code = "4092"
 
 mongo  = PyMongo(app)
 
@@ -24,13 +26,16 @@ def home():
 		'review':data['review'],
 		'rating':data['rating'],
 		'wdate':data['wdate']
-
 		}
-		print(movie)
-		doc = mongo.db.movies.insert_one(movie)
+		if data['auth_code'] == auth_code:
+			doc = mongo.db.movies.insert_one(movie)
+			return redirect(url_for('dashboard'))
 	return render_template('create.html')
 
-
+@app.route('/', methods=['GET','POST'])
+def dashboard():
+	movies = mongo.db.movies.find()
+	return render_template('movies.html', movies=movies)
 
 
 

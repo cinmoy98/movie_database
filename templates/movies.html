@@ -88,8 +88,8 @@
                 
             </div>
             <div class="d-flex align-items-center">
-                <a href="{{url_for('home')}}" target="_blank" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-book me-2"></span> Create</a>
-                <a href="{{url_for('dashboard')}}" target="_blank" class="btn btn-tertiary"><i class="fas fa-cloud-download-alt me-2"></i>Show Cinemas</a>
+                <a href="{{url_for('home')}}" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-book me-2"></span> Create</a>
+                <a href="{{url_for('dashboard')}}" class="btn btn-tertiary"><i class="fas fa-cloud-download-alt me-2"></i>Show Cinemas</a>
                 <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -115,131 +115,52 @@
         <rect fill="none" stroke="#fff" x="14" stroke-width="28.8" y="17.6" width="0" height="11.2"/>
     </svg>
 </div>
-
-        <!-- Hero -->
-        <section class="section-header bg-secondary text-white">
-            <div class="container">
-               <div class="row justify-content-between align-items-center">
-                 <div class="section section-md pt-4">
+<section class="section-header bg-secondary text-white">
+<div class="section section-md">
     <div class="container">
-        <form action="/home" method="post">
-        <div class="row mb-4 mb-lg-5">
-            
-            <div class="col-lg-4 col-sm-6">
-                <div class="mb-4">
-                    <label for="exampleInputEmail6">Movie Name</label>
-                    <input type="text" name="mname" class="form-control" id="exampleInputEmail6" placeholder="Movie Name">
-                </div>
-                <div class="mb-4">
-                    <label for="exampleInputEmail6">Release Year</label>
-                    <input type="text" name="rdate" class="form-control" id="exampleInputEmail6" placeholder="Release Year">
-                </div>
-                <div class="mb-4">
-                    <label for="exampleInputEmail6">Link To Watch</label>
-                    <input type="text" name="wlink" class="form-control" id="exampleInputEmail6" placeholder="Link To Watch">
-                </div>
-                <div class="mb-4">
-                    <label for="exampleInputEmail6">Link To Watch</label>
-                    <input type="text" name="imdblink" class="form-control" id="exampleInputEmail6" placeholder="Link To IMDB">
-                </div>
-                <div class="mb-4">
-                    <label for="exampleInputEmail6">Rating</label>
-                    <input type="text" name="rating" class="form-control" id="exampleInputEmail6" placeholder="Rating">
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="mb-3">
-                    <label class="my-1 me-2" for="inlineFormCustomSelectPref">Genre</label>
-                    <select class="form-select" id="inlineFormCustomSelectPref" aria-label="Default select example" name="genre">
-                        <option selected>Open this select menu</option>
-                        <option value="drama">Drama</option>
-                        <option value="thriller">Thriller</option>
-                        <option value="Romantic">Romantic</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="my-1 me-2" for="inlineFormCustomSelectPref">Country</label>
-                    <select class="form-select" id="inlineFormCustomSelectPref" aria-label="Default select example" name="country">
-                        <option selected>Open this select menu</option>
-                        <option value="usa">USA</option>
-                        <option value="india">India</option>
-                        <option value="french">French</option>
-                    </select>
-                </div>
-                 <div class="md-3">
-                <!-- Form -->
-                <div class="form-group">
-                    <label class="h6" for="exampleInputDate1">Watch date</label>
-                    <div class="input-group mb-4">
-                        <span class="input-group-text" id="basic-addonDate1"><span
-                                class="fas far fa-calendar-alt"></span></span>
-                        <input class="form-control" data-datepicker="" id="exampleInputDate1" placeholder="Select date"
-                            type="text" name="wdate" aria-label="Date with icon left">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                
+                <div class="mb-5">
+                    <div class="mb-4">
+                        <span class="h5">Cinema List</span>
                     </div>
+                    <table class="table table-dark">
+                        <tr>
+                            <th scope="col" id="class1">Movie/Series</th>
+                            <th scope="col" id="teacher1">Release Date</th>
+                            <th scope="col" id="males1">Genre</th>
+                            <th scope="col" id="class1">Movie/Series</th>
+                            <th scope="col" id="males1">Rating</th>
+                            <th scope="col" id="females1">Country</th>
+                            <th scope="col" id="females1">Watched at</th>
+                            <th scope="col" id="class1">Watch Link</th>
+                            <th scope="col" id="teacher1">IMDB Link</th>
+                            <th scope="col" id="teacher1">Watched ?</th>
+                            <th scope="col" id="males1">Review</th>
+                        </tr>
+                        {% for movie in movies %}
+                        <tr>
+                            <th scope="row">{{ movie['mname'] }}</th>
+                            <th scope="row">{{ movie['rdate'] }}</th>
+                            <th scope="row">{{ movie['genre'] }}</th>
+                            <th scope="row">{{ movie['moviesorseries'] }}</th>
+                            <th scope="row">{{ movie['rating'] }}</th>
+                            <th scope="row">{{ movie['country'] }}</th>
+                            <th scope="row">{{ movie['wdate'] }}</th>
+                            <th scope="row">{{ movie['wlink'] }}</th>
+                            <th scope="row">{{ movie['imdblink'] }}</th>
+                            <th scope="row">{{ movie['watched'] }}</th>
+                            <th scope="row">{{ movie['review'] }}</th>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
-                <!-- End of Form -->
-            </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1">Review</label>
-                    <textarea name="review" class="form-control" placeholder="Enter your review..." id="exampleFormControlTextarea1"
-                        rows="4"></textarea>
-                </div>
-                <!-- End of Form -->
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <!-- Form -->
-                <div class="mb-3">
-                   <div class="form-check">
-                        <input class="form-check-input" type="radio" name="watched" id="exampleRadios1"
-                            value="watched" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Watched
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="watched" id="exampleRadios2"
-                            value="not_watched">
-                        <label class="form-check-label" for="exampleRadios2">
-                            Not watched
-                        </label>
-                    </div>
-                </div>
-                <div class="mb-3">
-                   <div class="form-check">
-                        <input class="form-check-input" type="radio" name="moviesorseries" id="exampleRadios1"
-                            value="movies" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Movies
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="moviesorseries" id="exampleRadios2"
-                            value="series">
-                        <label class="form-check-label" for="exampleRadios2">
-                            Series
-                        </label>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail6">Auth Code</label>
-                    <input type="password" name="auth_code" class="form-control" id="exampleInputEmail6" placeholder="Auth Code">
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-outline-primary" type="submit">
-                        Save
-                        <span class="ms-1"><span class="far fa-save"></span></span>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-        </form>
             </div>
         </div>
-               </div>
-            </div>
-        </section>
-    <!-- Core -->
+    </div>
+</div>
+</section>
 <script src="{{ url_for('static', filename='assets/dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
