@@ -148,8 +148,8 @@
                             <th scope="row">{{ movie['rating'] }}</th>
                             <th scope="row">{{ movie['country'] }}</th>
                             <th scope="row">{{ movie['wdate'] }}</th>
-                            <th scope="row">{{ movie['wlink'] }}</th>
-                            <th scope="row">{{ movie['imdblink'] }}</th>
+                            <th scope="row"><a href="{{ movie['wlink'] }}" target="_blank" class="badge bg-info">Watch</a></th>
+                            <th scope="row"><a href="{{ movie['imdblink'] }}" target="_blank" class="badge bg-warning text-dark">IMDb</a></th>
                             <th scope="row">{{ movie['watched'] }}</th>
                             <th scope="row">{{ movie['review'] }}</th>
                         </tr>
